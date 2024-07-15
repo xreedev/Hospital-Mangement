@@ -1,6 +1,7 @@
 package com.simplogics.hospitalManagement.util;
 import com.simplogics.hospitalManagement.Invoice.Invoice;
 import com.simplogics.hospitalManagement.Invoice.ProcedureInvoice;
+import com.simplogics.hospitalManagement.constants.GlobalConstants;
 import com.simplogics.hospitalManagement.mappingObjects.EquipDetails;
 import com.simplogics.hospitalManagement.mappingObjects.StaffDetails;
 import org.apache.poi.ss.usermodel.*;
@@ -11,16 +12,17 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.List;
 public class ExcelUtil {
+
     public static void generateInvoices(List<Invoice> invoices, String dest) throws IOException {
         Workbook workbook = new XSSFWorkbook();
-        Sheet sheet = workbook.createSheet("Invoices");
+        Sheet sheet = workbook.createSheet(GlobalConstants.WORKBOOK_TITLE);
         Row titleRow = sheet.createRow(0);
         Cell titleCell = titleRow.createCell(0);
-        titleCell.setCellValue("Hospital Management INVOICE");
+        titleCell.setCellValue(GlobalConstants.WORKBOOK_SUBTITLE);
         int rowNum = 0;
         for (Invoice invoice : invoices) {
             rowNum = addInvoice(sheet, rowNum, invoice);
-            rowNum++; // Add a blank row between invoices
+            rowNum++;
         }
 
         saveWorkbook(workbook, dest);
@@ -54,8 +56,8 @@ public class ExcelUtil {
 
         private static int addPatientInfo(Sheet sheet, int rowNum, Invoice invoice) {
             Row patientRow = sheet.createRow(rowNum++);
-            patientRow.createCell(0).setCellValue("Patient Name: " + invoice.getName());
-            patientRow.createCell(1).setCellValue("Date: " + invoice.getLocalDate());
+            patientRow.createCell(0).setCellValue(GlobalConstants.PATIENT_NAME_ROW + invoice.getName());
+            patientRow.createCell(1).setCellValue(GlobalConstants.DATE_ROW + invoice.getLocalDate());
             return rowNum;
         }
 

@@ -1,19 +1,16 @@
 package com.simplogics.hospitalManagement.service;
 
 import com.simplogics.hospitalManagement.Invoice.Invoice;
-import com.simplogics.hospitalManagement.mappingObjects.EquipDetails;
-import com.simplogics.hospitalManagement.mappingObjects.StaffDetails;
+import com.simplogics.hospitalManagement.constants.GlobalConstants;
 import com.simplogics.hospitalManagement.model.Patient;
 import com.simplogics.hospitalManagement.repository.IPatientProcedureRepository;
 import com.simplogics.hospitalManagement.repository.IPatientRepository;
-import com.simplogics.hospitalManagement.repository.IProcedureRepository;
 import com.simplogics.hospitalManagement.util.ExcelUtil;
 import com.simplogics.hospitalManagement.util.InvoiceUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +21,7 @@ public class InvoiceService {
     private final IPatientProcedureRepository patientProcedureRepository;
     public void createInvoice(Integer patientId) throws Exception {
         Invoice invoice=InvoiceUtil.setInvoice(patientId,patientProcedureRepository);
-         InvoiceUtil.generateInvoice(invoice,"test.pdf");
+         InvoiceUtil.generateInvoice(invoice, GlobalConstants.INVOICE_DEST);
          createExcel();
     }
     public void createExcel() throws IOException {
@@ -35,7 +32,7 @@ public class InvoiceService {
             Invoice invoice=InvoiceUtil.setInvoice(patient.getPatientId(),patientProcedureRepository);
             invoices.add(invoice);
         }
-        ExcelUtil.generateInvoices(invoices,"test.xlsx");
+        ExcelUtil.generateInvoices(invoices, GlobalConstants.EXCEL_DEST);
     }
 
 }

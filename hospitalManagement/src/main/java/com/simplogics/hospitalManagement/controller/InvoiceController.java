@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(ApiRoutes.INVOICE_API)
 public class InvoiceController {
     private final InvoiceService invoiceService;
-    @PostMapping(ApiRoutes.INVOICE_PDF)
+    @GetMapping(ApiRoutes.INVOICE_PDF)
     public void getPdf(@RequestParam(required = false) Integer patientId) throws Exception {
         invoiceService.createInvoice(patientId);
     }
-    @PostMapping(ApiRoutes.INVOICE_EXCEL)
+    @GetMapping(ApiRoutes.INVOICE_EXCEL)
     public void getPdf() throws Exception {
         invoiceService.createExcel();
     }
