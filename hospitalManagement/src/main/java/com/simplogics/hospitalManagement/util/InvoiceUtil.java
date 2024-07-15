@@ -10,6 +10,7 @@ import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
 import com.simplogics.hospitalManagement.Invoice.Invoice;
 import com.simplogics.hospitalManagement.Invoice.ProcedureInvoice;
+import com.simplogics.hospitalManagement.constants.ExcelRows;
 import com.simplogics.hospitalManagement.mappingObjects.EquipDetails;
 import com.simplogics.hospitalManagement.mappingObjects.StaffDetails;
 import com.simplogics.hospitalManagement.repository.IPatientProcedureRepository;
@@ -88,14 +89,14 @@ public class InvoiceUtil {
     }
 
     private static void addPatientInfo(Document document, Invoice invoice) {
-        Paragraph patientInfo = new Paragraph("Patient Name: " + invoice.getName() + "\n" +
-                "Date: " + invoice.getLocalDate() + "\n\n")
+        Paragraph patientInfo = new Paragraph(ExcelRows.NAME + invoice.getName() + "\n" +
+                ExcelRows.DATE_ROW + invoice.getLocalDate() + "\n\n")
                 .setFontSize(12);
         document.add(patientInfo);
     }
 
     private static Integer addProcedureDetails(Document document, ProcedureInvoice procedureInvoice) {
-        Paragraph procedureTitle = new Paragraph("Procedure Name: " + procedureInvoice.getName() + "\n")
+        Paragraph procedureTitle = new Paragraph(ExcelRows.PROCEDURE_NAME_ROW+ procedureInvoice.getName() + "\n")
                 .setFontSize(8)
                 .setFontColor(ColorConstants.BLACK);
         document.add(procedureTitle);
@@ -104,7 +105,7 @@ public class InvoiceUtil {
         Integer equipTotal = addEquipDetails(document, procedureInvoice.getEquipDetails());
 
         Integer procedureTotal = staffTotal + equipTotal;
-        Paragraph procedureTotalPara = new Paragraph("  Procedure Total: " + procedureTotal + "\n\n")
+        Paragraph procedureTotalPara = new Paragraph(ExcelRows.PROCEDURE_TOTAL + procedureTotal + "\n\n")
                 .setFontSize(8)
                 .setFontColor(ColorConstants.BLACK);
         document.add(procedureTotalPara);
@@ -113,16 +114,16 @@ public class InvoiceUtil {
     }
 
     private static Integer addStaffDetails(Document document, List<StaffDetails> staffDetails) {
-        Paragraph staffTitle = new Paragraph("Staff:\n")
+        Paragraph staffTitle = new Paragraph(ExcelRows.STAFF+"\n")
                 .setFontSize(8)
                 .setFontColor(ColorConstants.BLACK);
         document.add(staffTitle);
 
         Table staffTable = new Table(new float[]{5, 5, 5, 5});
-        staffTable.addCell("Name");
-        staffTable.addCell("Duration");
-        staffTable.addCell("Salary per Hour");
-        staffTable.addCell("Total");
+        staffTable.addCell(ExcelRows.NAME_ROW);
+        staffTable.addCell(ExcelRows.DURATION);
+        staffTable.addCell(ExcelRows.SALARY_PER_HOUR);
+        staffTable.addCell(ExcelRows.TOTAL);
 
         Integer staffTotal = 0;
         for (StaffDetails staff : staffDetails) {
@@ -134,7 +135,7 @@ public class InvoiceUtil {
         }
         document.add(staffTable);
 
-        Paragraph staffTotalPara = new Paragraph("  Staff Total: " + staffTotal + "\n\n")
+        Paragraph staffTotalPara = new Paragraph(ExcelRows.STAFF_TOTAL + staffTotal + "\n\n")
                 .setFontSize(8)
                 .setFontColor(ColorConstants.BLACK);
         document.add(staffTotalPara);
@@ -143,16 +144,16 @@ public class InvoiceUtil {
     }
 
     private static Integer addEquipDetails(Document document, List<EquipDetails> equipDetails) {
-        Paragraph equipTitle = new Paragraph("Equipment:\n")
+        Paragraph equipTitle = new Paragraph(ExcelRows.EQUIPMENT+"\n")
                 .setFontSize(8)
                 .setFontColor(ColorConstants.BLACK);
         document.add(equipTitle);
 
         Table equipTable = new Table(new float[]{5, 5, 5, 5});
-        equipTable.addCell("Equipment Name");
-        equipTable.addCell("Number of Equipment");
-        equipTable.addCell("Cost per Use");
-        equipTable.addCell("Total");
+        equipTable.addCell(ExcelRows.EQUIPMENT_NAME);
+        equipTable.addCell(ExcelRows.NUMBER_OF_EQUIPMENT);
+        equipTable.addCell(ExcelRows.COST_PER_USE);
+        equipTable.addCell(ExcelRows.TOTAL);
 
         BigDecimal equipTotal = BigDecimal.ZERO;
         for (EquipDetails equip : equipDetails) {
@@ -164,7 +165,7 @@ public class InvoiceUtil {
         }
         document.add(equipTable);
 
-        Paragraph equipTotalPara = new Paragraph("  Equipment Total: " + equipTotal + "\n\n")
+        Paragraph equipTotalPara = new Paragraph(ExcelRows.EQUIPMENT_TOTAL + equipTotal + "\n\n")
                 .setFontSize(8)
                 .setFontColor(ColorConstants.BLACK);
         document.add(equipTotalPara);
@@ -173,7 +174,7 @@ public class InvoiceUtil {
     }
 
     private static void addNetTotal(Document document, Integer netTotal) {
-        Paragraph netTotalPara = new Paragraph("Net Total: " + netTotal + "\n\n")
+        Paragraph netTotalPara = new Paragraph(ExcelRows.NET_TOTAL + netTotal + "\n\n")
                 .setFontSize(8)
                 .setFontColor(ColorConstants.BLACK);
         document.add(netTotalPara);

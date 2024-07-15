@@ -1,7 +1,7 @@
 package com.simplogics.hospitalManagement.service;
 
 import com.simplogics.hospitalManagement.Invoice.Invoice;
-import com.simplogics.hospitalManagement.constants.GlobalConstants;
+import com.simplogics.hospitalManagement.constants.ExcelRows;
 import com.simplogics.hospitalManagement.model.Patient;
 import com.simplogics.hospitalManagement.repository.IPatientProcedureRepository;
 import com.simplogics.hospitalManagement.repository.IPatientRepository;
@@ -21,7 +21,7 @@ public class InvoiceService {
     private final IPatientProcedureRepository patientProcedureRepository;
     public void createInvoice(Integer patientId) throws Exception {
         Invoice invoice=InvoiceUtil.setInvoice(patientId,patientProcedureRepository);
-         InvoiceUtil.generateInvoice(invoice, GlobalConstants.INVOICE_DEST);
+         InvoiceUtil.generateInvoice(invoice, ExcelRows.INVOICE_DEST);
          createExcel();
     }
     public void createExcel() throws IOException {
@@ -32,7 +32,7 @@ public class InvoiceService {
             Invoice invoice=InvoiceUtil.setInvoice(patient.getPatientId(),patientProcedureRepository);
             invoices.add(invoice);
         }
-        ExcelUtil.generateInvoices(invoices, GlobalConstants.EXCEL_DEST);
+        ExcelUtil.generateInvoices(invoices, ExcelRows.EXCEL_DEST);
     }
 
 }
