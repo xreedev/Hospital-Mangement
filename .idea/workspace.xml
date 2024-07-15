@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="62a6563c-3820-4c80-8aac-ee14b2be828c" name="Changes" comment="created invoice service and controller">
+    <list default="true" id="62a6563c-3820-4c80-8aac-ee14b2be828c" name="Changes" comment="updated invoice service and controller">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -147,13 +147,22 @@
       <option name="project" value="LOCAL" />
       <updated>1721025341525</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="updated invoice service and controller">
+      <option name="closed" value="true" />
+      <created>1721034273957</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1721034273957</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="initial commit" />
     <MESSAGE value="patient components created" />
     <MESSAGE value="created invoice service and controller" />
-    <option name="LAST_COMMIT_MESSAGE" value="created invoice service and controller" />
+    <MESSAGE value="updated invoice service and controller" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated invoice service and controller" />
   </component>
 </project>
