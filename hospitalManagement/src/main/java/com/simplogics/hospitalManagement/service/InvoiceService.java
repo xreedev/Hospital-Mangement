@@ -19,12 +19,11 @@ import java.util.List;
 public class InvoiceService {
     private final IPatientRepository patientRepository;
     private final IPatientProcedureRepository patientProcedureRepository;
-    public void createInvoice(Integer patientId) throws Exception {
+    public void createInvoice(Integer patientId,String dest) throws Exception {
         Invoice invoice=InvoiceUtil.setInvoice(patientId,patientProcedureRepository);
-         InvoiceUtil.generateInvoice(invoice, ExcelRows.INVOICE_DEST);
-         createExcel();
+         InvoiceUtil.generateInvoice(invoice,dest);
     }
-    public void createExcel() throws IOException {
+    public void createExcel(String dest) throws IOException {
         List<Invoice> invoices=new ArrayList<>();
         List<Patient> patientIds=patientRepository.findAll();
         for(Patient patient:patientIds) {
@@ -32,7 +31,7 @@ public class InvoiceService {
             Invoice invoice=InvoiceUtil.setInvoice(patient.getPatientId(),patientProcedureRepository);
             invoices.add(invoice);
         }
-        ExcelUtil.generateInvoices(invoices, ExcelRows.EXCEL_DEST);
+        ExcelUtil.generateInvoices(invoices,dest);
     }
 
 }

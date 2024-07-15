@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.*;
 public class InvoiceController {
     private final InvoiceService invoiceService;
     @GetMapping(ApiRoutes.INVOICE_PDF)
-    public void getPdf(@RequestParam(required = false) Integer patientId) throws Exception {
-        invoiceService.createInvoice(patientId);
+    public void getPdf(@RequestParam(required = false) Integer patientId,@RequestParam(required = false) String  dest) throws Exception {
+        invoiceService.createInvoice(patientId,dest);
     }
     @GetMapping(ApiRoutes.INVOICE_EXCEL)
-    public void getPdf() throws Exception {
-        invoiceService.createExcel();
+    public void getPdf(@RequestParam(required = false) String  dest) throws Exception {
+        invoiceService.createExcel(dest);
     }
 }
