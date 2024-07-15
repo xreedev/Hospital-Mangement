@@ -2,7 +2,6 @@ package com.simplogics.hospitalManagement.service;
 
 import com.simplogics.hospitalManagement.advice.*;
 import com.simplogics.hospitalManagement.constants.ExceptionConstants;
-import com.simplogics.hospitalManagement.constants.GlobalConstants;
 import com.simplogics.hospitalManagement.dto.PatientDTO;
 import com.simplogics.hospitalManagement.dto.PatientProcedureDto;
 import com.simplogics.hospitalManagement.dto.ResponseDTO;
@@ -52,7 +51,7 @@ public class PatientService {
     public ResponseDTO delPatient(Integer pId) throws NullRequestException {
         patientRepository.delete(patientRepository.findById(pId.longValue()).orElseThrow(()->new NullRequestException(ExceptionConstants.PATIENT_DOES_NOT_EXIST)));
         ResponseDTO responseDTO=new ResponseDTO();
-        responseDTO.setMessage(GlobalConstants.DELETED);
+        //responseDTO.setMessage(GlobalConstants.DELETED);
         return responseDTO;
     }
     public ResponseDTO getPatients(){

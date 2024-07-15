@@ -1,6 +1,7 @@
 package com.simplogics.hospitalManagement.constants;
 
 public class ApiRoutes {
+    public static final String INVOICE_API="/api/invoice";
     public static final String PATIENT_API ="/api/patient";
     public static final String CREATE_PATIENT ="/create";
     public static final String CREATE_PROCEDURE ="/procedure";
@@ -11,4 +12,7 @@ public class ApiRoutes {
     public static final String FETCH_TOTAL="/fetch";
     public static final String FETCH_STAFF="/fetchStaff";
     public static final String FETCH_EQUIP="/fetchEquip";
+    public static final String INVOICE_PDF="/pdf";
+    public static final String INVOICE_EXCEL="/excel";
+
 }

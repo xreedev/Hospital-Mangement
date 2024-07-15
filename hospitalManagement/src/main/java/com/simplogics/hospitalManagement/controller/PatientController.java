@@ -13,7 +13,6 @@ import com.simplogics.hospitalManagement.service.ProcedureService;
 import com.simplogics.hospitalManagement.validators.RequestValidators;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.InvalidPropertiesFormatException;
 
 @RestController
@@ -21,8 +20,6 @@ import java.util.InvalidPropertiesFormatException;
 @RequestMapping(ApiRoutes.PATIENT_API)
 public class PatientController {
     private final PatientService patientService;
-    private final ProcedureService procedureService;
-    private final InvoiceService invoiceProcedure;
     @PostMapping(ApiRoutes.CREATE_PATIENT)
     public ResponseDTO createPatient(@RequestBody(required = false) PatientDTO patientDTO) throws NullRequestException, FieldRequiredException {
         RequestValidators.check(patientDTO);
@@ -47,8 +44,4 @@ public class PatientController {
     public ResponseDTO getPatients(){
         return patientService.getPatients();
     }
-
-    @GetMapping("test")
-    public void test() throws Exception {invoiceProcedure.createInvoice(1);}
-
 }

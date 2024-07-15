@@ -9,6 +9,6 @@ public class ExceptionConstants {
     public static final String PATIENT_DOES_NOT_EXIST="PATIENT DOES NOT EXIST";
     public static final String PROCEDURE_DOES_NOT_EXIST="PROCEDURE DOES NOT EXIST";
     public static final String INCORRECT_INTEGER_TYPE="INTEGER FORMAT IS WRONG";
-    public static final String INCORRECT_DATE_FORMAT="INCORRECT DATE FORMAT,REQUIRED:"+GlobalConstants.DATE_FORMAT;
+    public static final String INCORRECT_DATE_FORMAT="INCORRECT DATE FORMAT,REQUIRED:";
 
 }
