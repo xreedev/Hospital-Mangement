@@ -13,7 +13,7 @@ public class InvoiceController {
         invoiceService.createInvoice(patientId,dest);
     }
     @GetMapping(ApiRoutes.INVOICE_EXCEL)
-    public void getPdf(@RequestParam(required = false) String  dest) throws Exception {
-        invoiceService.createExcel(dest);
+    public void getExcel(@RequestParam String  dest,@RequestParam String  start,@RequestParam String  end) throws Exception {
+        invoiceService.createExcel(dest,start,end);
     }
 }

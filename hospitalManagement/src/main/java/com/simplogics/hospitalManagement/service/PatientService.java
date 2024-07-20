@@ -16,11 +16,14 @@ import com.simplogics.hospitalManagement.util.Parser;
 import com.simplogics.hospitalManagement.util.PatientUtil;
 import com.simplogics.hospitalManagement.util.ToDtoGlobal;
 import com.simplogics.hospitalManagement.validators.PatientValidators;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.InvalidPropertiesFormatException;
 import java.util.List;
-
+@Service
+@RequiredArgsConstructor
 public class PatientService {
     private final IPatientRepository patientRepository;
     private final IProcedureRepository procedureRepository;
