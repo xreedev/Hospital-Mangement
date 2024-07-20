@@ -19,6 +19,9 @@ public interface IPatientProcedureRepository extends JpaRepository<PatientProced
 
     @Query(nativeQuery = true,value = Queries.FETCH_PATIENT_PROCEDURE_COSTS)
     List<Object[]> fetchPatientProcedureDetails(@Param("patientId") Integer patientId);
+    @Query(nativeQuery = true,value = Queries.FETCH_PATIENT_PROCEDURE_COSTS_DATE)
+    List<Object[]> fetchPatientProcedureDetailsWithDate(@Param("patientId") Integer patientId,@Param("startDate") Date startDate,@Param("endDate") Date endDate);
+
 
     @Query(nativeQuery = true,value =Queries.GET_STAFF_SALARY_TOTAL)
     List<Object[]> fetchStaffTotalDetails(@Param("patientId") Integer patientId,@Param("procedureId") Integer procedureId);

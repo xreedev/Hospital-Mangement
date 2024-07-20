@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="62a6563c-3820-4c80-8aac-ee14b2be828c" name="Changes" comment="updated invoice service and controller" />
+    <list default="true" id="62a6563c-3820-4c80-8aac-ee14b2be828c" name="Changes" comment="patient components created" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -22,18 +22,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "xreedev"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;xreedev&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/xreedev/hospitalManagement2.git",
-    "accountId": "61960421-ea3c-4402-bb45-ad9cba92a760"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/xreedev/hospitalManagement2.git&quot;,
+    &quot;accountId&quot;: &quot;61960421-ea3c-4402-bb45-ad9cba92a760&quot;
   }
-}]]></component>
+}</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -55,7 +55,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.HospitalManagementApplication.executor": "Run",
+    "Application.HospitalManagementApplication.executor": "Debug",
     "Attach to process.pid 11520.executor": "ProcessAttachDebug",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -63,7 +63,7 @@
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/dell/Pictures/Desktop/Simplogics/hospital/hospitalManagement/hospitalManagement/src/main/java/com/simplogics/hospitalManagement/Invoice",
+    "last_opened_file_path": "C:/Users/dell/Downloads/Hospital-Management-System-safar",
     "settings.editor.selected.configurable": "build.tools"
   }
 }]]></component>
