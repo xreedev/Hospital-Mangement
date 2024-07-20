@@ -12,6 +12,7 @@ import com.simplogics.hospitalManagement.Invoice.Invoice;
 import com.simplogics.hospitalManagement.Invoice.ProcedureInvoice;
 import com.simplogics.hospitalManagement.advice.NullRequestException;
 import com.simplogics.hospitalManagement.constants.ExcelRows;
+import com.simplogics.hospitalManagement.constants.ExceptionConstants;
 import com.simplogics.hospitalManagement.mappingObjects.EquipDetails;
 import com.simplogics.hospitalManagement.mappingObjects.StaffDetails;
 import com.simplogics.hospitalManagement.repository.IPatientProcedureRepository;
@@ -23,46 +24,51 @@ import java.util.List;
 public class InvoiceUtil {
 
     public static Invoice setInvoice(Integer patientId, IPatientProcedureRepository patientProcedureRepository) throws NullRequestException {
-        Invoice invoice=new Invoice();
-        List<Object[]> patientProcedureDetails=patientProcedureRepository.fetchPatientProcedureDetails(patientId);
-        Integer totalCost=0;
-        if(patientProcedureDetails==null){
-            throw new NullRequestException("wornf");
+        Invoice invoice = new Invoice();
+        List<Object[]> patientProcedureDetails = patientProcedureRepository.fetchPatientProcedureDetails(patientId);
+        if(patientProcedureDetails.isEmpty()){
+            throw new NullRequestException(ExceptionConstants.NO_RECORDS_FOUNDS_OF_THIS_PATIENT);
         }
-        List<Integer> procedures=new ArrayList<>();
+        Integer totalCost = 0;
+        List<Integer> procedures = new ArrayList<>();
         for (Object[] patient : patientProcedureDetails) {
-            Integer costInt=((BigDecimal)patient[4]).intValue();
-            totalCost +=costInt ;
+            Integer costInt = ((BigDecimal) patient[4]).intValue();
+            totalCost += costInt;
             procedures.add((Integer) patient[2]);
         }
         invoice.setTotal(totalCost);
         invoice.setPId(procedures);
         invoice.setName((String) patientProcedureDetails.getFirst()[1]);
-        List<ProcedureInvoice> procedureInvoices=InvoiceUtil.getProcedureInvoices(procedures,patientProcedureRepository,patientId);
+        invoice.setStartDate((Date) patientProcedureDetails.getFirst()[7]);
+        List<ProcedureInvoice> procedureInvoices = InvoiceUtil.getProcedureInvoices(procedures, patientProcedureRepository, patientId);
         invoice.setProcedureInvoices(procedureInvoices);
         return invoice;
     }
-    public static List<ProcedureInvoice> getProcedureInvoices(List<Integer> procedures,IPatientProcedureRepository patientProcedureRepository,Integer patientId){
-        List<ProcedureInvoice> procedureInvoices=new ArrayList<>();
-        for(Integer pId :procedures)
-        {
-            List<Object[]> patientProcedure=patientProcedureRepository.fetchStaffTotalDetails(patientId,pId);
-            List<StaffDetails> staffDetails=patientProcedure.stream().map(result->
-                    new StaffDetails((String) result[1],(Integer) result[2],
-                            (BigDecimal)result[3],(BigDecimal) result[4])).toList();
-            List<Object[]> p1=patientProcedureRepository.fetchEquipmentTotalDetails(patientId,pId);
-            List<EquipDetails> equipDetails=p1.stream().map(result->new EquipDetails((String) result[1], (Integer) result[2],
-                    (Integer) result[3], (Integer)  result[4])).toList();
 
-            ProcedureInvoice procedureInvoice=new ProcedureInvoice();
+    public static List<ProcedureInvoice> getProcedureInvoices(List<Integer> procedures, IPatientProcedureRepository patientProcedureRepository, Integer patientId) throws NullRequestException {
+        List<ProcedureInvoice> procedureInvoices = new ArrayList<>();
+        for (Integer pId : procedures) {
+            List<Object[]> patientProcedure = patientProcedureRepository.fetchStaffTotalDetails(patientId, pId);
+            if(patientProcedure.isEmpty()){
+                throw new NullRequestException(ExceptionConstants.NO_RECORDS_FOUNDS_OF_THIS_PATIENT);
+            }
+            List<StaffDetails> staffDetails = patientProcedure.stream().map(result ->
+                    new StaffDetails((String) result[1], (Integer) result[2],
+                            (BigDecimal) result[3], (BigDecimal) result[4])).toList();
+            List<Object[]> p1 = patientProcedureRepository.fetchEquipmentTotalDetails(patientId, pId);
+            List<EquipDetails> equipDetails = p1.stream().map(result -> new EquipDetails((String) result[1], (Integer) result[2],
+                    (Integer) result[3], (Integer) result[4])).toList();
+
+            ProcedureInvoice procedureInvoice = new ProcedureInvoice();
             procedureInvoice.setDuration((Integer) patientProcedure.getFirst()[2]);
             procedureInvoice.setName((String) patientProcedure.getFirst()[0]);
             procedureInvoice.setStaffDetails(staffDetails);
             procedureInvoice.setEquipDetails(equipDetails);
             procedureInvoices.add(procedureInvoice);
         }
-        return  procedureInvoices;
+        return procedureInvoices;
     }
+
     public static void generateInvoice(Invoice invoice, String dest) throws Exception {
         PdfWriter writer = new PdfWriter(dest);
         PdfDocument pdf = new PdfDocument(writer);
@@ -101,7 +107,7 @@ public class InvoiceUtil {
     }
 
     private static Integer addProcedureDetails(Document document, ProcedureInvoice procedureInvoice) {
-        Paragraph procedureTitle = new Paragraph(ExcelRows.PROCEDURE_NAME_ROW+ procedureInvoice.getName() + "\n")
+        Paragraph procedureTitle = new Paragraph(ExcelRows.PROCEDURE_NAME_ROW + procedureInvoice.getName() + "\n")
                 .setFontSize(8)
                 .setFontColor(ColorConstants.BLACK);
         document.add(procedureTitle);
@@ -119,7 +125,7 @@ public class InvoiceUtil {
     }
 
     private static Integer addStaffDetails(Document document, List<StaffDetails> staffDetails) {
-        Paragraph staffTitle = new Paragraph(ExcelRows.STAFF+"\n")
+        Paragraph staffTitle = new Paragraph(ExcelRows.STAFF + "\n")
                 .setFontSize(8)
                 .setFontColor(ColorConstants.BLACK);
         document.add(staffTitle);
@@ -149,7 +155,7 @@ public class InvoiceUtil {
     }
 
     private static Integer addEquipDetails(Document document, List<EquipDetails> equipDetails) {
-        Paragraph equipTitle = new Paragraph(ExcelRows.EQUIPMENT+"\n")
+        Paragraph equipTitle = new Paragraph(ExcelRows.EQUIPMENT + "\n")
                 .setFontSize(8)
                 .setFontColor(ColorConstants.BLACK);
         document.add(equipTitle);
@@ -183,27 +189,5 @@ public class InvoiceUtil {
                 .setFontSize(8)
                 .setFontColor(ColorConstants.BLACK);
         document.add(netTotalPara);
-    }
-
-    public static Invoice setExcelInvoice(Integer patientId, IPatientProcedureRepository patientProcedureRepository) throws NullRequestException {
-        Invoice invoice=new Invoice();
-        List<Object[]> patientProcedureDetails=patientProcedureRepository.fetchPatientProcedureDetailsWithDate(patientId,);
-        Integer totalCost=0;
-        if(patientProcedureDetails==null){
-            throw new NullRequestException("NO DETAILS FOUND");
-        }
-        List<Integer> procedures=new ArrayList<>();
-        for (Object[] patient : patientProcedureDetails) {
-            Integer costInt=((BigDecimal)patient[4]).intValue();
-            totalCost +=costInt ;
-            procedures.add((Integer) patient[2]);
-        }
-        invoice.setTotal(totalCost);
-        invoice.setPId(procedures);
-        invoice.setName((String) patientProcedureDetails.getFirst()[1]);
-        invoice.setStartDate((Date) patientProcedureDetails.getFirst()[7]);
-        List<ProcedureInvoice> procedureInvoices=InvoiceUtil.getProcedureInvoices(procedures,patientProcedureRepository,patientId);
-        invoice.setProcedureInvoices(procedureInvoices);
-        return invoice;
     }
 }

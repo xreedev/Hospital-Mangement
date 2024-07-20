@@ -11,4 +11,7 @@ public class ExceptionConstants {
     public static final String INCORRECT_INTEGER_TYPE="INTEGER FORMAT IS WRONG";
     public static final String INCORRECT_DATE_FORMAT="INCORRECT DATE FORMAT,REQUIRED:";
 
+    public static final String FILE_CANNOT_BE_READ_OR_WRITTEN = "FILE CANNOT BE READ OR WRITTEN";
+    public static final String DATE_FORMAT_NOT_CORRECT = "Date format not correct";
+    public static final String NO_RECORDS_FOUNDS_OF_THIS_PATIENT = "NO RECORDS FOUNDS OF THIS PATIENT";
 }

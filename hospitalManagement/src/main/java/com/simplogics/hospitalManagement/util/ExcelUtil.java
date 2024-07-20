@@ -2,13 +2,16 @@ package com.simplogics.hospitalManagement.util;
 
 import com.simplogics.hospitalManagement.Invoice.Invoice;
 import com.simplogics.hospitalManagement.Invoice.ProcedureInvoice;
+import com.simplogics.hospitalManagement.advice.NoDependencyException;
 import com.simplogics.hospitalManagement.constants.ExcelRows;
+import com.simplogics.hospitalManagement.constants.ExceptionConstants;
 import com.simplogics.hospitalManagement.mappingObjects.EquipDetails;
 import com.simplogics.hospitalManagement.mappingObjects.StaffDetails;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -16,7 +19,7 @@ import java.util.List;
 
 public class ExcelUtil {
 
-    public static void generateInvoices(List<Invoice> invoices, String dest) throws IOException {
+    public static void generateInvoices(List<Invoice> invoices, String dest) throws IOException, NoDependencyException {
         Workbook workbook = new XSSFWorkbook();
         Sheet sheet = workbook.createSheet(ExcelRows.WORKBOOK_TITLE);
 
@@ -67,7 +70,7 @@ public class ExcelUtil {
     private static int addPatientInfo(Sheet sheet, int rowNum, Invoice invoice) {
         Row patientRow = sheet.createRow(rowNum++);
         patientRow.createCell(0).setCellValue(ExcelRows.NAME_ROW + invoice.getName());
-        patientRow.createCell(1).setCellValue(ExcelRows.DATE_ROW + invoice.getLocalDate());
+        patientRow.createCell(1).setCellValue(ExcelRows.DATE_ROW + invoice.getStartDate());
         return rowNum;
     }
 
@@ -100,9 +103,12 @@ public class ExcelUtil {
         netTotalRow.createCell(0).setCellValue(ExcelRows.NET_TOTAL + " " + netTotal);
     }
 
-    private static void saveWorkbook(Workbook workbook, String dest) throws IOException {
+    private static void saveWorkbook(Workbook workbook, String dest) throws NoDependencyException {
         try (FileOutputStream fileOut = new FileOutputStream(dest)) {
             workbook.write(fileOut);
+        }
+        catch (IOException FileNotFoundException){
+            throw new NoDependencyException(ExceptionConstants.FILE_CANNOT_BE_READ_OR_WRITTEN);
         }
     }
 }
