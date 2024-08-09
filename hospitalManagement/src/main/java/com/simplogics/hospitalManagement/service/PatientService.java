@@ -24,11 +24,12 @@ import java.util.InvalidPropertiesFormatException;
 import java.util.List;
 @Service
 @RequiredArgsConstructor
-public class PatientService {
+public class PatientService implements IPatientService {
     private final IPatientRepository patientRepository;
     private final IProcedureRepository procedureRepository;
     private final IPatientProcedureRepository patientProcedureRepository;
 
+    @Override
     public ResponseDTO createPatient(PatientDTO patientDto) throws FieldRequiredException {
         PatientValidators.patientDtoCheck(patientDto);
         List<Patient> patients = PatientUtil.createPatient(patientDto);
@@ -36,6 +37,7 @@ public class PatientService {
         return ToDtoGlobal.listToPatientDTO(patients);
     }
 
+    @Override
     public ResponseDTO setPatPro(PatientProcedureDto procedureDto) throws FieldRequiredException, NoDependencyException, InvalidDataFormatException, InvalidPropertiesFormatException {
         PatientValidators.patientProcedureDtoCheck(procedureDto, patientRepository, procedureRepository);
         Date date = Parser.dateParser(procedureDto.getDate());
@@ -45,6 +47,7 @@ public class PatientService {
         return ToDtoGlobal.toPatientProcedureDto(procedureDto);
     }
 
+    @Override
     public ResponseDTO updatePatient(Integer pid, String Name) {
         Patient P = new Patient();
         P.setPatientId(pid);
@@ -53,6 +56,7 @@ public class PatientService {
         return ToDtoGlobal.toPatientDto(saved);
     }
 
+    @Override
     public ResponseDTO delPatient(Integer pId) throws NullRequestException {
         patientRepository.delete(patientRepository.findById(pId.longValue()).orElseThrow(() -> new NullRequestException(ExceptionConstants.PATIENT_DOES_NOT_EXIST)));
         ResponseDTO responseDTO = new ResponseDTO();
@@ -60,6 +64,7 @@ public class PatientService {
         return responseDTO;
     }
 
+    @Override
     public ResponseDTO getPatients() {
         List<Patient> patients = patientRepository.findAll();
         ResponseDTO responseDTO = new ResponseDTO();

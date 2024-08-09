@@ -7,9 +7,7 @@ import com.simplogics.hospitalManagement.constants.ApiRoutes;
 import com.simplogics.hospitalManagement.dto.PatientDTO;
 import com.simplogics.hospitalManagement.dto.PatientProcedureDto;
 import com.simplogics.hospitalManagement.dto.ResponseDTO;
-import com.simplogics.hospitalManagement.service.InvoiceService;
 import com.simplogics.hospitalManagement.service.PatientService;
-import com.simplogics.hospitalManagement.service.ProcedureService;
 import com.simplogics.hospitalManagement.validators.RequestValidators;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -43,5 +41,10 @@ public class PatientController {
     @GetMapping(ApiRoutes.GET_PATIENTS)
     public ResponseDTO getPatients(){
         return patientService.getPatients();
+    }
+
+    @GetMapping("/hello")
+    public String sayHello() {
+        return "Hello, World!";
     }
 }
