@@ -14,6 +14,7 @@ public class GlobalException {
             responseDTO.setHasError(true);
             return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.BAD_REQUEST);
         }
+    
     @ExceptionHandler(NullRequestException.class)
     public ResponseEntity<ResponseDTO> NullRequestException(NullRequestException msg){
         ResponseDTO responseDTO=new ResponseDTO();
