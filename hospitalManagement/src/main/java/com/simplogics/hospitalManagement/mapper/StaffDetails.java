@@ -1,4 +1,4 @@
-package com.simplogics.hospitalManagement.mappingObjects;
+package com.simplogics.hospitalManagement.mapper;
 
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
@@ -10,7 +10,6 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 public class StaffDetails {
     @Id
-    //private String procedureName;
     private String staffName;
     private Integer duration;
     private BigDecimal salaryPerHour;

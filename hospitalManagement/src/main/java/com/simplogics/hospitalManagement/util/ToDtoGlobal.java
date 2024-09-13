@@ -2,10 +2,8 @@ package com.simplogics.hospitalManagement.util;
 
 import com.simplogics.hospitalManagement.dto.PatientDTO;
 import com.simplogics.hospitalManagement.dto.PatientProcedureDto;
-import com.simplogics.hospitalManagement.dto.ProcedureDto;
 import com.simplogics.hospitalManagement.dto.ResponseDTO;
 import com.simplogics.hospitalManagement.model.Patient;
-import com.simplogics.hospitalManagement.model.Procedure;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,13 +17,6 @@ public class ToDtoGlobal {
         patientDto.setPatientName(names);
         ResponseDTO responseDTO = new ResponseDTO();
         responseDTO.setData(patientDto);
-        return responseDTO;
-    }
-    public static ResponseDTO toProcedureDTO(Procedure P){
-        ProcedureDto procedure=new ProcedureDto();
-        procedure.setProcedure(P.getName());
-        ResponseDTO responseDTO=new ResponseDTO();
-        responseDTO.setData(procedure);
         return responseDTO;
     }
     public static ResponseDTO toPatientProcedureDto(PatientProcedureDto P){

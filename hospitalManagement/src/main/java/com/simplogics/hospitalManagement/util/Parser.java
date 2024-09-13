@@ -1,6 +1,6 @@
 package com.simplogics.hospitalManagement.util;
 
-import com.simplogics.hospitalManagement.advice.InvalidDataFormatException;
+import com.simplogics.hospitalManagement.advice.HospitalException;
 import com.simplogics.hospitalManagement.constants.ExceptionConstants;
 import com.simplogics.hospitalManagement.constants.GlobalConstants;
 import java.text.ParseException;
@@ -10,22 +10,22 @@ import java.util.TimeZone;
 
 public class Parser {
 
-    public static Integer intParser(String value) throws InvalidDataFormatException {
+    public static Integer intParser(String value) throws HospitalException {
         try{
             return Integer.parseInt(value);
         }
         catch(NumberFormatException E){
-            throw new InvalidDataFormatException(ExceptionConstants.INCORRECT_INTEGER_TYPE);
+            throw new HospitalException(ExceptionConstants.INCORRECT_INTEGER_TYPE);
         }
     }
-    public static Date dateParser(String value) throws InvalidDataFormatException {
+    public static Date dateParser(String value) throws HospitalException {
         try{
             SimpleDateFormat dateFormat=new SimpleDateFormat(GlobalConstants.DATE_FORMAT);
             dateFormat.setTimeZone(TimeZone.getTimeZone(GlobalConstants.UTC));
             return dateFormat.parse(value);
         }
         catch(NumberFormatException | ParseException E){
-            throw new InvalidDataFormatException(ExceptionConstants.INCORRECT_DATE_FORMAT);
+            throw new HospitalException(ExceptionConstants.INCORRECT_DATE_FORMAT);
         }
     }
 }

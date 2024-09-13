@@ -1,9 +1,6 @@
 package com.simplogics.hospitalManagement.service;
 
-import com.simplogics.hospitalManagement.advice.FieldRequiredException;
-import com.simplogics.hospitalManagement.advice.InvalidDataFormatException;
-import com.simplogics.hospitalManagement.advice.NoDependencyException;
-import com.simplogics.hospitalManagement.advice.NullRequestException;
+import com.simplogics.hospitalManagement.advice.HospitalException;
 import com.simplogics.hospitalManagement.constants.ExceptionConstants;
 import com.simplogics.hospitalManagement.dto.PatientDTO;
 import com.simplogics.hospitalManagement.dto.PatientProcedureDto;
@@ -30,15 +27,15 @@ public class PatientService implements IPatientService {
     private final IPatientProcedureRepository patientProcedureRepository;
 
     @Override
-    public ResponseDTO createPatient(PatientDTO patientDto) throws FieldRequiredException {
+    public ResponseDTO createPatient(PatientDTO patientDto) throws HospitalException {
         PatientValidators.patientDtoCheck(patientDto);
         List<Patient> patients = PatientUtil.createPatient(patientDto);
-        patients.forEach(patientRepository::save);
+        patientRepository.saveAll(patients);
         return ToDtoGlobal.listToPatientDTO(patients);
     }
 
     @Override
-    public ResponseDTO setPatPro(PatientProcedureDto procedureDto) throws FieldRequiredException, NoDependencyException, InvalidDataFormatException, InvalidPropertiesFormatException {
+    public ResponseDTO setPatPro(PatientProcedureDto procedureDto) throws HospitalException {
         PatientValidators.patientProcedureDtoCheck(procedureDto, patientRepository, procedureRepository);
         Date date = Parser.dateParser(procedureDto.getDate());
         Integer patId = Parser.intParser(procedureDto.getPatientId());
@@ -57,11 +54,9 @@ public class PatientService implements IPatientService {
     }
 
     @Override
-    public ResponseDTO delPatient(Integer pId) throws NullRequestException {
-        patientRepository.delete(patientRepository.findById(pId.longValue()).orElseThrow(() -> new NullRequestException(ExceptionConstants.PATIENT_DOES_NOT_EXIST)));
-        ResponseDTO responseDTO = new ResponseDTO();
-        //responseDTO.setMessage(GlobalConstants.DELETED);
-        return responseDTO;
+    public ResponseDTO delPatient(Integer pId) throws HospitalException {
+        patientRepository.delete(patientRepository.findById(pId.longValue()).orElseThrow(() -> new HospitalException(ExceptionConstants.PATIENT_DOES_NOT_EXIST)));
+        return new ResponseDTO();
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.simplogics.hospitalManagement.mappingObjects;
+package com.simplogics.hospitalManagement.mapper;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

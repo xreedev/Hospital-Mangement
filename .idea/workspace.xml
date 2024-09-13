@@ -5,13 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="62a6563c-3820-4c80-8aac-ee14b2be828c" name="Changes" comment="updated invoice service and controller">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hospitalManagement/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/hospitalManagement/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hospitalManagement/src/main/java/com/simplogics/hospitalManagement/controller/PatientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/hospitalManagement/src/main/java/com/simplogics/hospitalManagement/controller/PatientController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hospitalManagement/src/main/java/com/simplogics/hospitalManagement/service/IPatientService.java" beforeDir="false" afterPath="$PROJECT_DIR$/hospitalManagement/src/main/java/com/simplogics/hospitalManagement/service/IPatientService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hospitalManagement/src/main/java/com/simplogics/hospitalManagement/service/PatientService.java" beforeDir="false" afterPath="$PROJECT_DIR$/hospitalManagement/src/main/java/com/simplogics/hospitalManagement/service/PatientService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hospitalManagement/src/main/java/com/simplogics/hospitalManagement/util/ExcelUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/hospitalManagement/src/main/java/com/simplogics/hospitalManagement/util/ExcelUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hospitalManagement/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/hospitalManagement/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,12 +30,12 @@
     &quot;assignee&quot;: &quot;xreedev&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/xreedev/hospitalManagement2.git&quot;,
-    &quot;accountId&quot;: &quot;61960421-ea3c-4402-bb45-ad9cba92a760&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/xreedev/hospitalManagement2.git",
+    "accountId": "1d0e7493-8e74-4d63-9f75-b5151826b0ca"
   }
-}</component>
+}]]></component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -75,7 +69,13 @@
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/dell/Pictures/Desktop/Simplogics/hospital/hospitalManagement/hospitalManagement/src/main/java/com/simplogics/hospitalManagement/Invoice",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -95,7 +95,7 @@
       <recent name="com.simplogics.hospitalManagement.advice" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.HospitalManagementApplication">
     <configuration name="HospitalManagementApplication" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.simplogics.hospitalManagement.HospitalManagementApplication" />
       <module name="hospitalManagement" />
@@ -109,6 +109,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="HospitalManagementApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="hospitalManagement" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.simplogics.hospitalManagement.HospitalManagementApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.20224.419" />
+        <option value="bundled-js-predefined-d6986cc7102b-410509235cf1-JavaScript-IU-242.20224.419" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -118,6 +134,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1720587570296</updated>
+      <workItem from="1725554296726" duration="646000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -177,6 +194,9 @@
     </task>
     <option name="localTasksCounter" value="8" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="initial commit" />

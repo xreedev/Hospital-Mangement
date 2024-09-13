@@ -1,7 +1,7 @@
 package com.simplogics.hospitalManagement.Invoice;
 
-import com.simplogics.hospitalManagement.mappingObjects.EquipDetails;
-import com.simplogics.hospitalManagement.mappingObjects.StaffDetails;
+import com.simplogics.hospitalManagement.mapper.EquipDetails;
+import com.simplogics.hospitalManagement.mapper.StaffDetails;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

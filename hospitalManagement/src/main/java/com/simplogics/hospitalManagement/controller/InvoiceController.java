@@ -7,13 +7,13 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @RequestMapping(ApiRoutes.INVOICE_API)
 public class InvoiceController {
-    private final InvoiceService invoiceService;
+    private final InvoiceService InvoiceService;
     @GetMapping(ApiRoutes.INVOICE_PDF)
     public void getPdf(@RequestParam(required = false) Integer patientId,@RequestParam(required = false) String  dest) throws Exception {
-        invoiceService.createInvoice(patientId,dest);
+        InvoiceService.createInvoice(patientId,dest);
     }
     @GetMapping(ApiRoutes.INVOICE_EXCEL)
     public void getExcel(@RequestParam String  dest,@RequestParam String  start,@RequestParam String  end) throws Exception {
-        invoiceService.createExcel(dest,start,end);
+        InvoiceService.createExcel(dest,start,end);
     }
 }
